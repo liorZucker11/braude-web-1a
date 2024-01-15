@@ -1,46 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTW App Template</title>
-    <style>
-        .but{
-            float: left;
-            height: 50px;
-            width: 50px;
-             padding: 5px;
-             margin: 5px;
-             background-color: grey; 
-             border-radius: 5px;
-             cursor: pointer; 
-        }
-        .but:hover{
-            background-color: rgb(192, 178, 178);
-        }
-        .but::
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 48px;
+      height: 48px;
+      font-size: 18px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
-    
-    <!-- your app code goes here -->
-    <div style="width: 300px;margin: 20px auto;background-color: silver;">
-        <div class="but">1</div>
-        <div class="but">2</div>
-        <div class="but">3</div>
-        <div class="but">4</div>
-        <div class="but">5</div>
-        <div class="but">6</div>
-        <div class="but">7</div>
-        <div class="but">8</div>
-        <div class="but">9</div>
-        <div class="but">0</div>
-        <div class="but">+</div>
-        <div class="but">-</div>
-        <div style="clear:both"></div>
-        <div class="but">=</div>
-        
-    </div>
+  <div class="calculator">
+    <input type="text" id="display" readonly>
+    <br>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('/')">/</button>
+    <br>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <br>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <br>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendToDisplay('+')">+</button>
+    <br>
+    <button onclick="clearDisplay()">C</button>
+  </div>
 
     <!-- special scripts for integration in MTW gallery - must be placed at the bottom of the HTML after your code -->
     <script>
