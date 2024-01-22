@@ -51,6 +51,9 @@
     h1 {
       color: rgb(54, 84, 134);
     }
+    .number{
+      background-color: rgb(180, 212, 255);
+    }
   </style>
 </head>
 <body>
@@ -58,69 +61,74 @@
     <h1>Lior Calculator</h1>
     <input type="text" id="display" readonly>
     <br>
-    <button class = "styleButton" onclick="appendToDisplay(7)">7</button>
-    <button class = "styleButton" onclick="appendToDisplay(8)">8</button>
-    <button class = "styleButton" onclick="appendToDisplay(9)">9</button>
-    <button class = "styleButton" onclick="appendToDisplay('/')">/</button>
+    <button class = "styleButton" onclick="appendToDisplay('MC')">MC</button>
+    <button class = "styleButton" onclick="appendToDisplay('MR')">MR</button>
+    <button class = "styleButton" onclick="appendToDisplay('M+')">M+</button>
+    <button class = "styleButton" onclick="appendToDisplay('M-')">M-</button>
+    <button class = "styleButton" onclick="appendToDisplay('MS')">MS</button>
+    <button class = "styleButton" onclick="appendToDisplay('M*')">M*</button>
     <br>
-    <button class = "styleButton" onclick="appendToDisplay(4)">4</button>
-    <button class = "styleButton" onclick="appendToDisplay(5)">5</button>
-    <button class = "styleButton" onclick="appendToDisplay(6)">6</button>
-    <button class = "styleButton" onclick="appendToDisplay('*')">*</button>
+    <button class = "styleButton" onclick="appendToDisplay('**2')">x²</button>
+    <button class = "styleButton" onclick="appendToDisplay('2ⁿᵈ')">2ⁿᵈ</button>
+    <button class = "styleButton" onclick="appendToDisplay('π')">π</button>
+    <button class = "styleButton" onclick="appendToDisplay('e')">e</button>
+    <button class = "styleButton" onclick="clearDisplay('C')">C</button>
+    <!-- מימוש פונקציה -->
+    <button class = "styleButton" onclick="deleteLastCharacter()">←</button>
     <br>
-    <button class = "styleButton" onclick="appendToDisplay(1)">1</button>
-    <button class = "styleButton" onclick="appendToDisplay(2)">2</button>
-    <button class = "styleButton" onclick="appendToDisplay(3)">3</button>
+    <button class = "styleButton" onclick="appendToDisplay('1/x')">1/x</button>
+    <button class = "styleButton" onclick="appendToDisplay('sqrt(')">²√x</button>
+    <button class = "styleButton" onclick="appendToDisplay('(')">(</button>
+    <button class = "styleButton" onclick="appendToDisplay(')')">)</button>
+    <button class = "styleButton" onclick="appendToDisplay('!')">n!</button>
+    <button class = "styleButton" onclick="appendToDisplay('/')">÷</button>
+    <br>
+    <button class = "styleButton" onclick="appendToDisplay('abs(')">|x|</button>
+    <button class = "styleButton" onclick="appendToDisplay('')">xʸ</button>
+    <button class = "styleButton number" onclick="appendToDisplay(7)">7</button>
+    <button class = "styleButton number" onclick="appendToDisplay(8)">8</button>
+    <button class = "styleButton number" onclick="appendToDisplay(9)">9</button>
+    <button class = "styleButton" onclick="appendToDisplay('*')">X</button>
+    <br>
+    <button class = "styleButton" onclick="appendToDisplay('exp(')">exp</button>
+    <button class = "styleButton" onclick="appendToDisplay('10**')">10ˣ</button>
+    <button class = "styleButton number" onclick="appendToDisplay(4)">4</button>
+    <button class = "styleButton number" onclick="appendToDisplay(5)">5</button>
+    <button class = "styleButton number" onclick="appendToDisplay(6)">6</button>
     <button class = "styleButton" onclick="appendToDisplay('-')">-</button>
     <br>
-    <button class = "styleButton" onclick="clearDisplay()">C</button>
-    <button class = "styleButton" onclick="appendToDisplay(0)">0</button>
-    <button class = "styleButton" onclick="calculate()">=</button>
+    <button class = "styleButton" onclick="appendToDisplay('%')">mod</button>
+    <button class = "styleButton" onclick="appendToDisplay('log(')">log</button>
+    <button class = "styleButton number" onclick="appendToDisplay(1)">1</button>
+    <button class = "styleButton number" onclick="appendToDisplay(2)">2</button>
+    <button class = "styleButton number" onclick="appendToDisplay(3)">3</button>
     <button class = "styleButton" onclick="appendToDisplay('+')">+</button>
+    <br>
+    <button class = "styleButton" onclick="appendToDisplay('ln(')">ln</button>
+    <button class = "styleButton" onclick="appendToDisplay('ln(')">ln</button>
+    <button class = "styleButton" onclick="appendToDisplay('-1*')">+/-</button>
+    <button class = "styleButton number" onclick="appendToDisplay(0)">0</button>
+    <button class = "styleButton" onclick="appendToDisplay('.')">.</button>
+    <button class = "styleButton" onclick="calculate()">=</button>
   </div>
 
     <!-- special scripts for integration in MTW gallery - must be placed at the bottom of the HTML after your code -->
     <script>
        let calc="";
-       let calcList=[];
        function appendToDisplay(x){
         calc=calc+x;
-        calcList.push(x);
         display.value=calc;
        }
        function calculate(){
-        calcList.push('=');
-        numberList=[];
-        let number=0;
-        answer=0;
-        for (let i=0 ; i<calcList.length ; i++){
-          if(calcList[i]!=='/' && calcList[i]!=='*' && calcList[i]!=='+' && calcList[i]!=='-'&& calcList[i]!=='='){
-            number=(number*10)+calcList[i];
-          }
-          else{
-            numberList.push(number);
-            numberList.push(calcList[i]);
-            number=0;
-          }
-        }
-        number1=numberList[0];
-        op=numberList[1];
-        number2=numberList[2];
-        if(op==='+'){
-          display.value=number1+number2;
-        }else if(op==='-'){
-          display.value=number1-number2;
-        }else if(op==='*'){
-          display.value=number1*number2;
-        }else if(op==='/'){
-          display.value=number1/number2;
-        }
-        calcList=[];
-        calc="";
+        calc=eval(calc)
+        display.value=display.value+'='+calc
        }
        function clearDisplay(){
-        calcList=[];
         calc="";
+        display.value=calc;
+       }
+       function deleteLastCharacter(){
+        calc=calc.slice(0, -1);
         display.value=calc;
        }
 
